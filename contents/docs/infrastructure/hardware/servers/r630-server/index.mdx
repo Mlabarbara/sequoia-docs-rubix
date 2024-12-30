@@ -1,0 +1,91 @@
+---
+title: "PowerEdge R630"
+---
+
+# Dell PowerEdge R630 Overview
+
+The Dell PowerEdge R630 is a secondary server in our infrastructure, serving as one of our main hypervisor hosts. This documentation covers the physical hardware specifications and configuration. For information about the Proxmox Virtual Environment installation and configuration, please see the Proxmox R630 documentation.
+
+## Hardware Identification
+
+- **Manufacturer**: Dell
+- **Model**: PowerEdge R630
+- **Serial Number**: [To be added]
+- **Purchase Date**: [To be added]
+- **Location**: [To be added]
+
+## Network Configuration
+
+### Physical Network Interfaces
+
+- **Primary NIC (vmbr0)**
+  - IP Address: 192.168.0.245/24
+  - Gateway: 192.168.0.1
+  - Purpose: Primary network interface
+
+- **Secondary NIC (vmbr1)**
+  - IP Address: 192.168.0.244/24
+  - Purpose: Secondary network interface
+
+### iDRAC Configuration
+
+The server is equipped with iDRAC for out-of-band management:
+
+- **iDRAC IP Address**: [To be added]
+- **Access**: Web interface available at [To be added]
+- **Features**:
+  - Remote console access
+  - Hardware monitoring
+  - Power control
+  - Virtual media support
+  - Hardware inventory
+  - Automated alerting
+
+## Storage Configuration
+
+### Physical Storage Layout
+
+1. **Local Directory Storage**
+   - Type: Local directory
+   - Purpose: Templates, ISOs, and backups
+   - Mount Path: /var/lib/vz
+
+2. **LVM Storage**
+   - Type: LVM (Logical Volume Management)
+   - Configuration: Shared with r440-pve
+   - Purpose: Primary VM and container storage
+
+3. **ZFS Storage**
+   - Type: ZFS
+   - Total Capacity: 5.33TB
+   - Used Space: 4.20TB
+   - Available Space: 1.13TB
+   - Note: Exclusive to r630
+
+## Physical Specifications
+
+- **Form Factor**: [To be added]
+- **Rack Location**: [To be added]
+- **Status**: Active/Production
+
+## Primary Workloads
+
+This server hosts several critical systems including:
+- Domain Controllers
+- File Servers
+- Stirling PDF
+- Docker hosts
+- Twingate
+
+## Additional Notes
+
+- The server is equipped with redundant power supplies
+- Regular firmware updates are performed through iDRAC
+- Hardware monitoring is configured through iDRAC
+- Access to physical server requires proper authorization
+
+## Related Documentation
+
+- Proxmox R630 Configuration - Details about the Proxmox VE installation and virtual environment configuration
+- Infrastructure Overview - General infrastructure documentation
+- Server Management - Server management procedures and guidelines

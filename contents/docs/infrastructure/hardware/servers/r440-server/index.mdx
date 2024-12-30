@@ -1,0 +1,82 @@
+---
+title: "PowerEdge R440"
+---
+
+# Dell PowerEdge R440 Overview
+
+The Dell PowerEdge R440 is a primary server in our infrastructure, serving as one of our main hypervisor hosts. This documentation covers the physical hardware specifications and configuration. For information about the Proxmox Virtual Environment installation and configuration, please see the Proxmox R440 documentation.
+
+## Hardware Identification
+
+- **Manufacturer**: Dell
+- **Model**: PowerEdge R440
+- **Serial Number**: BF22D43
+- **Purchase Date**: June 1, 2023
+- **Location**: Server rack, middle shelf
+
+## Network Configuration
+
+### Physical Network Interfaces
+
+- **Primary NIC (eno1)**
+  - MAC Address: 2c:ea:7f:47:89:07
+  - IP Address: 192.168.0.210/24
+  - Gateway: 192.168.0.1
+  - Purpose: Primary network interface
+
+- **Secondary NIC (eno2)**
+  - IP Address: 192.168.0.209/24
+  - Purpose: Secondary network interface
+
+### iDRAC Configuration
+
+The server is equipped with iDRAC 9 (Integrated Dell Remote Access Controller) for out-of-band management:
+
+- **iDRAC IP Address**: 192.168.0.222
+- **Access**: Web interface available at https://192.168.0.222
+- **Features**:
+  - Remote console access
+  - Hardware monitoring
+  - Power control
+  - Virtual media support
+  - Hardware inventory
+  - Automated alerting
+
+## Storage Configuration
+
+The R440 is configured with 8 disks in a RAID 50 configuration, providing an optimal balance of performance, redundancy, and storage capacity.
+
+### Physical Storage Layout
+
+1. **System Storage**
+   - Type: Local directory
+   - Total Capacity: 98.5GB
+   - Used Space: 56.1GB (56.97%)
+   - Mount Path: /var/lib/vz
+
+2. **Main Storage Pool**
+   - Type: LVM (Logical Volume Management)
+   - Configuration: RAID 50
+   - Total Capacity: 5.84TB
+   - Used Space: 2.07TB (35.43%)
+   - Volume Group: pve
+   - Thinpool: data
+
+## Physical Specifications
+
+- **Form Factor**: 1U Rack Server
+- **Rack Location**: Middle shelf of primary server rack
+- **Status**: Active/Production
+
+## Additional Notes
+
+- The server is configured with redundant power supplies for high availability
+- Regular firmware updates are performed through iDRAC
+- Hardware monitoring and alerting are configured through iDRAC
+- Physical access to the server requires rack key and data center access
+
+## Related Documentation
+
+- Proxmox R440 Configuration - Details about the Proxmox VE installation and virtual environment configuration
+- Infrastructure Overview - General infrastructure documentation
+- Server Management - Server management procedures and guidelines

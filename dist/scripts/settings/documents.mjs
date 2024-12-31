@@ -1,27 +1,5 @@
 export const Documents = [
     {
-        title: "Introduction",
-        href: "/introduction",
-        heading: "Getting started",
-        items: [
-            {
-                title: "Installation",
-                href: "/installation",
-            },
-            {
-                title: "Setup",
-                href: "/setup",
-            },
-            {
-                title: "Changelog",
-                href: "/changelog",
-            },
-        ],
-    },
-    {
-        spacer: true,
-    },
-    {
         title: "Infrastructure",
         href: "/infrastructure",
         heading: "Core Systems",
@@ -30,6 +8,10 @@ export const Documents = [
                 title: "Hardware",
                 href: "/hardware",
                 items: [
+                    {
+                        title: "Computers",
+                        href: "/computers",
+                    },
                     {
                         title: "Servers",
                         href: "/servers",

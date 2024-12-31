@@ -6,6 +6,12 @@
     "content": ""
   },
   {
+    "slug": "/infrastructure/hardware/computers",
+    "title": "Computers",
+    "description": "",
+    "content": ""
+  },
+  {
     "slug": "/infrastructure/hardware",
     "title": "Hardware",
     "description": "",
@@ -39,19 +45,19 @@
     "slug": "/infrastructure",
     "title": "Infrastructure",
     "description": "",
-    "content": ""
+    "content": "# Infrastructure Overview\n\nThis section provides comprehensive documentation about our infrastructure, including hardware specifications, network architecture, and storage solutions.\n\n## Core Components\n\nOur infrastructure consists of three main components:\n\n### Hardware\n\n* Dell PowerEdge servers (R440 and R630) for primary compute resources\n* Enterprise-grade network devices for reliable connectivity\n* Specialized equipment for specific workloads\n\n### Network Architecture\n\n* Robust network topology design\n* Enterprise-grade switches for high-performance connectivity\n* Redundant configurations for high availability\n\n### Storage Solutions\n\n* Proxmox Backup Server for VM backups and disaster recovery\n* TrueNAS for network-attached storage\n* QNAP systems for additional storage needs\n\n## Infrastructure Management\n\nOur infrastructure is managed through several key systems:\n\n1. **Proxmox Virtual Environment**: For virtualization and container management\n2. **Active Directory**: For centralized authentication and resource management\n3. **Network Management**: Including firewall configurations and VPN access\n\n## Documentation Structure\n\nThis section is organized into the following subsections:\n\n* `/hardware`: Detailed documentation of our physical infrastructure\n  * Server specifications\n  * Network device configurations\n  * Hardware maintenance procedures\n\n* `/network-architecture`: Network design and implementation details\n  * Network topology\n  * Switch configurations\n  * Connection diagrams\n\n* `/storage`: Storage system documentation\n  * Storage allocation\n  * Backup procedures\n  * Disaster recovery protocols\n\n## Best Practices\n\nWhen working with our infrastructure:\n\n1. Always follow change management procedures\n2. Document all modifications in the appropriate subsection\n3. Keep configuration files up to date\n4. Regularly review and update documentation\n\nFor specific details about any component, please navigate to the appropriate subsection in the documentation.\n"
   },
   {
     "slug": "/infrastructure/network-architecture",
     "title": "Network Architecture",
     "description": "",
-    "content": ""
+    "content": "# Network Architecture\n\nThis section provides an overview of our network infrastructure, including the physical topology, connectivity, and key components.\n\n## Network Topology\n\nOur network infrastructure consists of redundant ISP connections, enterprise switches, servers, and workstations distributed across offices.\n\n## Key Components\n\n### Network Connectivity\n\n* **Dual ISP**: Redundant internet connections through Cisco Firepower (FPR) firewall\n* **Enterprise Switch**: Core switch for network distribution with direct firewall connection to R440 for redundancy\n* **Network Segmentation**: Separate VLANs for different network functions\n\n### Compute Resources\n\n* **R440 Server**: Primary virtualization host running VMs and LXC containers\n* **R630 Server**: Secondary virtualization host for redundancy and load distribution\n\n### Storage Infrastructure\n\n* **Proxmox Backup Server**: Dedicated backup solution for virtual environments\n* **TrueNAS Server**: Network-attached storage for file sharing and backups\n* **QNAP NAS**: Additional storage solution for specific department needs\n\n### End User Access\n\n* **Workstations**: 25 workstations distributed across three office areas\n* **Network Access**: Redundant paths to core infrastructure\n* **Security**: Implemented at switch level with VLANs and access controls\n\n## Network Design Principles\n\n1. **Redundancy**: All critical systems have redundant connections\n2. **High Availability**: Dual ISP and switch configuration ensures continuous operation\n3. **Scalability**: Infrastructure designed to accommodate future growth\n4. **Security**: Network segmentation and access controls at multiple levels\n\n## Maintenance and Monitoring\n\n* Regular network performance monitoring\n* Scheduled maintenance windows for updates\n* Backup verification and testing\n* Network security audits\n\nFor detailed configuration information about specific components, please refer to the respective sections in the documentation.\n"
   },
   {
     "slug": "/infrastructure/network-architecture/switches",
     "title": "Switches",
     "description": "",
-    "content": ""
+    "content": "# TP-Link T1600G-48PS Switch Troubleshooting Guide\n\n## Common Issues and Solutions\n\n### Power Over Ethernet (PoE) Problems\n\n1. **Phones Not Receiving Power**\n   * If is a sales phone, good chance it needs a power cable to work\\\n     \\--They are plugged into the Comcast router for \"call dropping\" issues--\n   * Check if the connected device is PoE-compatible\n   * Verify the PoE budget hasn't been exceeded (384W total)\n   * Ensure the Ethernet cable is properly connected\n   * Test with a different port\n\n2. **Port Status Indicators**\n   * Solid Green: Link established\n   * Blinking Green: Active data transmission\n   * Amber: PoE power being delivered\n   * Off: No connection\n\n### Network Connectivity Issues\n\n1. **Link Problems**\n   * Verify cable connections\n   * Check port configuration (speed/duplex settings)\n   * Inspect for port errors in switch interface\n\n2. **VLAN Configuration**\n   * Confirm VLAN assignments\n   * Check trunk port settings\n   * Verify PVID configuration\n\n## Basic Troubleshooting Steps\n\n1. **Access the Web Interface**\n   * Default IP: 192.168.0.1\n   * Username: admin\n   * Password: admin\n\n2. **Check System Logs**\n   * Navigate to Maintenance > System Logs\n   * Look for error messages or warnings\n\n3. **Monitor Port Statistics**\n   * Review port utilization\n   * Check for packet errors\n   * Monitor PoE consumption\n\n## Advanced Diagnostics\n\n1. **Cable Testing**\n   * Use built-in cable diagnostics\n   * Check for cable faults\n   * Verify cable length\n\n2. **Stack Configuration**\n   * Verify stack member status\n   * Check stack port connections\n   * Confirm stack unit priorities\n\n## Support Resources\n\n* Technical Support: [TP-Link Support](https://www.tp-link.com/support)\n* Documentation: [Product Manual](https://www.tp-link.com/resources)\n* Firmware Updates: Check regularly for latest versions\n\nRemember to save configuration changes and maintain backup configs for both switches.\n"
   },
   {
     "slug": "/infrastructure/network-architecture/topology",

@@ -22,7 +22,7 @@ function isRoute(item: Paths): item is Extract<Paths, { title: string; href: str
 
 export default function SubLink(props: Paths & { level: number; isSheet: boolean }) {
   const path = usePathname();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(props.level < 2);
 
   useEffect(() => {
     if (isRoute(props) && props.href && path !== props.href && path.includes(props.href)) {
@@ -37,8 +37,32 @@ export default function SubLink(props: Paths & { level: number; isSheet: boolean
   const { title, href, items, noLink, level, isSheet } = props;
 
   const Comp = (
-    <Anchor activeClassName="text-primary text-sm font-medium" href={href}>
+    <Anchor 
+      className="transition-colors rounded duration-150 w-full block px-3 py-0.5 hover:bg-primary/15 relative pr-8"
+      activeClassName="text-primary rounded font-medium bg-blue-100 w-full block px-3 py-0.5 dark:bg-slate-900 dark:text-blue-500"
+      href={href}
+      onClick={() => {
+        if (items && !isOpen) {
+          setIsOpen(true);
+        }
+      }}>
       {title}
+      {items && (
+        <span 
+          className="absolute right-2 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-neutral-500"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setIsOpen(false);
+          }}
+        >
+          {!isOpen ? (
+            <LuChevronRight className="h-3 w-3" />
+          ) : (
+            <LuChevronDown className="h-3 w-3" />
+          )}
+        </span>
+      )}
     </Anchor>
   );
 
@@ -49,34 +73,28 @@ export default function SubLink(props: Paths & { level: number; isSheet: boolean
   );
 
   if (!items) {
-    return <div className="flex flex-col text-sm">{titleOrLink}</div>;
+    return (
+      <div className="flex flex-col text-sm group">
+        <div className="rounded transition-colors duration-150">
+          {titleOrLink}
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="flex flex-col w-full gap-1">
+    <div className="flex flex-col w-full gap-0.5">
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-        <div className="flex items-center gap-2 text-sm mr-3">
-          {titleOrLink}
-          <CollapsibleTrigger asChild>
-            <Button
-              className="ml-auto h-6 w-6"
-              variant="link"
-              size="icon"
-            >
-              {!isOpen ? (
-                <LuChevronRight className="h-[0.9rem] w-[0.9rem]" />
-              ) : (
-                <LuChevronDown className="h-[0.9rem] w-[0.9rem]" />
-              )}
-              <span className="sr-only">Toggle</span>
-            </Button>
-          </CollapsibleTrigger>
-        </div>
+        <CollapsibleTrigger asChild>
+          <div className="w-full">
+            {titleOrLink}
+          </div>
+        </CollapsibleTrigger>
         <CollapsibleContent className="CollapsibleContent">
           <div
             className={cn(
-              "mt-2.5 flex flex-col items-start gap-3 pl-4 text-sm border-l text-neutral-800 dark:text-neutral-300/85",
-              level > 0 && "ml-1 pl-4 border-l"
+              "mt-1 flex flex-col items-start gap-1.5 pl-3 text-sm border-l text-neutral-800 dark:text-neutral-300/85",
+              level > 0 && "ml-1 pl-3 border-l"
             )}
           >
             {items?.map((innerLink) => {

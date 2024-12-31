@@ -1,0 +1,67 @@
+# TP-Link T1600G-48PS Switch Troubleshooting Guide
+
+## Common Issues and Solutions
+
+### Power Over Ethernet (PoE) Problems
+
+1. **Phones Not Receiving Power**
+    - If is a sales phone, good chance it needs a power cable to work  
+    --They are plugged into the Comcast router for "call dropping" issues--
+    - Check if the connected device is PoE-compatible
+    - Verify the PoE budget hasn't been exceeded (384W total)
+    - Ensure the Ethernet cable is properly connected
+    - Test with a different port
+
+2. **Port Status Indicators**
+    - Solid Green: Link established
+    - Blinking Green: Active data transmission
+    - Amber: PoE power being delivered
+    - Off: No connection
+
+### Network Connectivity Issues
+
+1. **Link Problems**
+    - Verify cable connections
+    - Check port configuration (speed/duplex settings)
+    - Inspect for port errors in switch interface
+
+2. **VLAN Configuration**
+    - Confirm VLAN assignments
+    - Check trunk port settings
+    - Verify PVID configuration
+
+## Basic Troubleshooting Steps
+
+1. **Access the Web Interface**
+    - Default IP: 192.168.0.1
+    - Username: admin
+    - Password: admin
+
+2. **Check System Logs**
+    - Navigate to Maintenance > System Logs
+    - Look for error messages or warnings
+
+3. **Monitor Port Statistics**
+    - Review port utilization
+    - Check for packet errors
+    - Monitor PoE consumption
+
+## Advanced Diagnostics
+
+1. **Cable Testing**
+    - Use built-in cable diagnostics
+    - Check for cable faults
+    - Verify cable length
+
+2. **Stack Configuration**
+    - Verify stack member status
+    - Check stack port connections
+    - Confirm stack unit priorities
+
+## Support Resources
+
+- Technical Support: [TP-Link Support](https://www.tp-link.com/support)
+- Documentation: [Product Manual](https://www.tp-link.com/resources)
+- Firmware Updates: Check regularly for latest versions
+
+Remember to save configuration changes and maintain backup configs for both switches.

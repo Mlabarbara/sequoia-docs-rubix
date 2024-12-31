@@ -1,0 +1,111 @@
+# Network Architecture
+
+This section provides an overview of our network infrastructure, including the physical topology, connectivity, and key components.
+
+## Network Topology
+
+Our network infrastructure consists of redundant ISP connections, enterprise switches, servers, and workstations distributed across offices.
+
+<Mermaid chart={`graph TD;
+    subgraph Internet
+        ISP1[ISP 1]
+        ISP2[ISP 2]
+    end
+
+    subgraph Core Infrastructure
+        FW[Cisco FPR<br/>Firewall]
+        SW1[Switch 1]
+        
+        subgraph Compute Servers
+            R440[R440 Server<br/>VMs & LXCs]
+            R630[R630 Server<br/>VMs & LXCs]
+        end
+        
+        subgraph Storage Servers
+            PBS[Backup Server<br/>Proxmox PBS]
+            TN[Storage Server<br/>TrueNAS]
+            QNAP[QNAP NAS]
+        end
+    end
+
+    subgraph Office Workstations
+        WS1[Office 1<br/>Workstations]
+        WS2[Office 2<br/>Workstations]
+        WS3[Office 3<br/>Workstations]
+    end
+
+    %% Internet and firewall connections
+    ISP1 --> FW
+    ISP2 --> FW
+    FW --> SW1
+    FW --> R440
+    
+    %% Server connections
+    SW1 --> R440
+    SW1 --> R630
+    SW2 --> R440
+    SW2 --> R630
+    
+    %% Storage connections
+    SW1 --> PBS
+    SW1 --> TN
+    SW1 --> QNAP
+    SW2 --> PBS
+    SW2 --> TN
+    SW2 --> QNAP
+    
+    %% Workstation connections
+    SW1 --> WS1
+    SW1 --> WS2
+    SW2 --> WS2
+    SW2 --> WS3
+
+    %% Styling
+classDef switch fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef firewall fill:#faa,stroke:#333,stroke-width:2px;
+    classDef server fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef storage fill:#bfb,stroke:#333,stroke-width:2px;
+    classDef workstation fill:#fbb,stroke:#333,stroke-width:2px;
+    
+    class FW firewall;
+    class SW1 switch;
+    class R440,R630 server;
+    class PBS,TN,QNAP storage;
+    class WS1,WS2,WS3 workstation;`} />
+
+## Key Components
+
+### Network Connectivity
+- **Dual ISP**: Redundant internet connections through Cisco Firepower (FPR) firewall
+- **Enterprise Switch**: Core switch for network distribution with direct firewall connection to R440 for redundancy
+- **Network Segmentation**: Separate VLANs for different network functions
+
+### Compute Resources
+- **R440 Server**: Primary virtualization host running VMs and LXC containers
+- **R630 Server**: Secondary virtualization host for redundancy and load distribution
+
+### Storage Infrastructure
+- **Proxmox Backup Server**: Dedicated backup solution for virtual environments
+- **TrueNAS Server**: Network-attached storage for file sharing and backups
+- **QNAP NAS**: Additional storage solution for specific department needs
+
+### End User Access
+- **Workstations**: 25 workstations distributed across three office areas
+- **Network Access**: Redundant paths to core infrastructure
+- **Security**: Implemented at switch level with VLANs and access controls
+
+## Network Design Principles
+
+1. **Redundancy**: All critical systems have redundant connections
+2. **High Availability**: Dual ISP and switch configuration ensures continuous operation
+3. **Scalability**: Infrastructure designed to accommodate future growth
+4. **Security**: Network segmentation and access controls at multiple levels
+
+## Maintenance and Monitoring
+
+- Regular network performance monitoring
+- Scheduled maintenance windows for updates
+- Backup verification and testing
+- Network security audits
+
+For detailed configuration information about specific components, please refer to the respective sections in the documentation.
